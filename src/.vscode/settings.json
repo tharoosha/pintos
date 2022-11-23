@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "limits.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "kbd.h": "c",
+        "interrupt.h": "c",
+        "thread.h": "c",
+        "process.h": "c"
+    }
+}
