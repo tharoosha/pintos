@@ -25,6 +25,6 @@ download the release version for this branch at https://github.com/jhu-cs318/pin
     title for pull request should be short and simple
     description for pull request should be detailed and clear, clearly stating the changes made
 ### Installing Pintos OS [view source](https://online.uom.lk/pluginfile.php/580578/mod_resource/content/2/OS%20Prerequisite%20-%20Installing%20Pintos%20OS.pdf)
-### Interactive Shell for Pintos OS [view source] (https://online.uom.lk/pluginfile.php/580140/mod_resource/content/3/Interactive_Shell.pdf)
+### Interactive Shell for Pintos OS [view source](https://online.uom.lk/pluginfile.php/580140/mod_resource/content/3/Interactive_Shell.pdf)
 ### essential reading for lab-1 [view source](https://www.cs.jhu.edu/~huang/cs318/fall20/project/pintos_3.html#SEC25)
 ### essential reading for lab-2 [view source](https://www.cs.jhu.edu/~huang/cs318/fall21/project/project2.html)
