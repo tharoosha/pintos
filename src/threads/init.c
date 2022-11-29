@@ -134,61 +134,54 @@ pintos_init (void)
     run_actions (argv);
   } else {
     // TODO: no command line passed to kernel. Run interactively 
-    printf("Malshan\n");
-    
-    int bufferSize = 20;
-    char * command = (char) malloc(bufferSize*sizeof(char));
-    int pos = 0;
-    
-
-    while (1){
-      printf("CS2024>> ");
-      while(1){
-        char c = input_getc();
-        if(c == 13){
-            // *(command + pos) = '\0';
-            command[pos] = '\0';
-            printf("\n");
-            break;
-        }else{
-            printf("%c",c);
-            command[pos] = c;
+    while(true){
+      printf("CS2042>> ");
+      char line[20];
+      input_init();
+      int pos = 0;
+      char c;
+      while (true){
+        c = input_getc();
+        line[pos] = c;
+        if (c == 13){
+          line[pos]='\0';
+          break;
         }
-        pos++;
+        else{
+          printf("%c",c);
+          pos++;
+        }
+  
       }
 
-      if (strcmp(command,"exit")==0){
-        shutdown_power_off();
-      }else if(strcmp(command,"whoami")==0){
-        printf("Malshan Keerthichandra\n");
-      }else if(strcmp(command,"myage")==0) {
-        printf("21 years old\n");
-      }else if(strcmp(command,"ram")==0){
-        printf("Pintos booting with %'"PRIu32" kB RAM...\n",init_ram_pages * PGSIZE / 1024);
-      }else if(strcmp(command,"time")==0){
-        printf("%ld years since the beginning\n",rtc_get_time()/(3600*24*365));
-      }else if(strcmp(command,"threadstatus")==0){
+      printf("\n");
+      if (strcmp(line,"whoami") == 0){
+          printf("Ravindu Marasingha 200382A\n");
+          printf("Tharoosha Vihidun 200682T\n");
+      }
+      else if (strcmp(line,"exit")==0){
+        printf("exit...\n");
+        break;
+      }
+      else if (strcmp(line,"shutdown")==0){
+        shutdown_power_off ();
+      }
+      else if (strcmp(line,"time") == 0){
+        printf("Time passed since kernel started = %lu s\n",rtc_get_time());
+      }
+      else if (strcmp(line,"ram") == 0){
+        printf("The amount of ram available is : %lu kB\n",init_ram_pages*4);
+      }
+      else if (strcmp(line,"thread" )== 0){
         thread_print_stats();
-        printf("\n");
-      }else if(strcmp(command,"priority")==0) {
-        printf("priority is: %d\n", thread_get_priority());
-      }else{
-        printf("command is not defined\n");
+      }
+      else if (strcmp(line,"priority")==0){
+        printf("Priority of this thread is %i\n", thread_get_priority());
+      }
+      else{
+        printf("Invalid command\n");
       }
     }
-    
-    //run_command(command);
-    //  while(1){
-    //   printf("CS2024>> ");
-    //   char *command;
-    //   command = (char *) read_line();
-    //   if(strcmp(command,"exit")==0){
-    //     shutdown_power_off();
-    //   }else{
-    //     run_command(command);
-    //   }
-    // }
-
   }
 
   /* Finish up. */
@@ -196,45 +189,6 @@ pintos_init (void)
   thread_exit ();
 }
 
-// char * read_line(){
-//     int bufferSize = 20;
-//     char * command = (char) malloc(bufferSize*sizeof(char));
-//     int pos = 0;
-//     while(1){
-//         char c = input_getc();
-//         if(c == 13){
-//             // *(command + pos) = '\0';
-//             command[pos] = '\0';
-//             printf("\n");
-//             break;
-//         }else{
-//             printf("%c",c);
-//             command[pos] = c;
-//         }
-//         pos++;
-//     }
-//     return command;
-// }
-
-
-// void run_command(char *command){
-//     if(strcmp(command,"whoami")==0){
-//         printf("Malshan Keerthichandra\n");
-//     }else if(strcmp(command,"myage")==0) {
-//         printf("21 years old\n");
-//     }else if(strcmp(command,"ram")==0){
-//         printf("Pintos booting with %'"PRIu32" kB RAM...\n",init_ram_pages * PGSIZE / 1024);
-//     }else if(strcmp(command,"time")==0){
-//         printf("%ld years since the beginning\n",rtc_get_time()/(3600*24*365));
-//     }else if(strcmp(command,"threadstatus")==0){
-//         thread_print_stats();
-//         printf("\n");
-//     }else if(strcmp(command,"priority")==0) {
-//         printf("priority is: %d\n", thread_get_priority());
-//     }else{
-//         printf("command is not defined\n");
-//     }
-// }
 
 /* Clear the "BSS", a segment that should be initialized to
    zeros.  It isn't actually stored on disk or zeroed by the
